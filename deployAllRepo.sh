@@ -6,7 +6,7 @@ CURRENT_DIR=$(pwd)
 source $CONFIG_FILE
 
 function build_image() {  
-    docker build -t $1:latest -f docker/orders.Dockerfile .
+    docker build -t $1:latest -f docker/$1.Dockerfile .
     k3d image import --cluster micro-shop-local $1:latest  
 }
 
@@ -21,8 +21,8 @@ for repo in ${gitrepos[@]}; do
         if [ "$(git fetch && git rev-list main...origin/main --count)" -gt "0" ]; then
             echo "Main branch behind origin/main."
             # git checkout main
-            # git pull    
-            git checkout add_database
+            # git pull               
+            git checkout main
             git pull
             build_image ${repo}      
         else
@@ -34,7 +34,7 @@ for repo in ${gitrepos[@]}; do
     git clone git@github.com:amitsatpute-gslab/${repo}.git
     # git checkout main    
     cd ${repo}
-    git checkout add_databse
+    git checkout dev
     build_image ${repo}    
   fi
 
