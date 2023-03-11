@@ -10,7 +10,7 @@ function build_image() {
     k3d image import --cluster micro-shop-local $1:latest  
 }
 
-declare -a gitrepos=("micro-shop-orders")
+declare -a gitrepos=("micro-shop-orders" "micro-shop-api")
 
 for repo in ${gitrepos[@]}; do
     echo    

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: services-configmap
+  labels:
+    name: services-configmap
+    app: micro-shop
+data:
+  order_service_url: order-service:8081
+  

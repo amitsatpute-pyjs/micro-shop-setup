@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels:
+    name: api-deployment
+    app: micro-shop
+spec:
+  selector:
+    matchLabels:
+      name: api-pod
+      app: micro-shop
+  replicas: 1
+  template:
+    metadata:
+      name: api-pod
+      labels:
+        name: api-pod
+        app: micro-shop
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: apis
+        image: micro-shop-api:latest 
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4000
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: ORDER_SERVICE
+          valueFrom:
+            configMapKeyRef:
+              name: services-configmap
+              key: order_service_url
+
+
