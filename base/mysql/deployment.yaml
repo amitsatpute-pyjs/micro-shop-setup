@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    name: mysql-deployment
+    app: micro-shop
+spec:
+  selector:
+    matchLabels:
+      name: mysql-pod
+      app: micro-shop
+  replicas: 1
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        name: mysql-pod
+        app: micro-shop
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: mysql
+        image: mysql:8.0       
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3306
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: db-root-password
+        volumeMounts:
+          - name: mysql-config-volume ## specify volume name
+            mountPath: /etc/mysql/conf.d/default_auth.cnf ## path to mount file
+            subPath: default_auth ## name of config
+      volumes:
+      - name: mysql-config-volume ## volume name
+        configMap:
+          name: mysql-configmap ## name of Config
