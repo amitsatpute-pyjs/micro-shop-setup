@@ -6,5 +6,5 @@ metadata:
     name: services-configmap
     app: micro-shop
 data:
-  order_service_url: order-service:8081
+  order_service_url: order-service
   
