@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orders-deployment
+  name: prodcuts-deployment
   labels:
-    name: orders-deployment
+    name: prodcuts-deployment
     app: micro-shop
 spec:
   selector:
     matchLabels:
-      name: orders-pod
+      name: prodcuts-pod
       app: micro-shop
   replicas: 1
   template:
     metadata:
-      name: orders-pod
+      name: prodcuts-pod
       labels:
-        name: orders-pod
+        name: prodcuts-pod
         app: micro-shop
     spec:
       restartPolicy: Always
       containers:
-      - name: orders
-        image: micro-shop-orders:latest 
+      - name: prodcuts
+        image: micro-shop-products:latest 
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 8081
+        - containerPort: 8082
         imagePullPolicy: IfNotPresent
         env:
         - name: DATABASE_USER
@@ -54,6 +54,6 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: mysql-configmap
-              key: orders_database_name
+              key: products_database_name
 
 
