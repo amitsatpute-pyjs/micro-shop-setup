@@ -35,5 +35,11 @@ spec:
             configMapKeyRef:
               name: services-configmap
               key: order_service_url
+        - name: PRODUCT_SERVICE
+          valueFrom:
+            configMapKeyRef:
+              name: services-configmap
+              key: product_service_url
+              
 
 

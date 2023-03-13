@@ -7,5 +7,5 @@ metadata:
     app: micro-shop
 data:
   order_service_url: order-service
-  prodct_service_url: product-service
+  product_service_url: product-service
   
