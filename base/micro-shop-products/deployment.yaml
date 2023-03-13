@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prodcuts-deployment
+  name: products-deployment
   labels:
-    name: prodcuts-deployment
+    name: products-deployment
     app: micro-shop
 spec:
   selector:
     matchLabels:
-      name: prodcuts-pod
+      name: products-pod
       app: micro-shop
   replicas: 1
   template:
     metadata:
-      name: prodcuts-pod
+      name: products-pod
       labels:
-        name: prodcuts-pod
+        name: products-pod
         app: micro-shop
     spec:
       restartPolicy: Always
       containers:
-      - name: prodcuts
+      - name: products
         image: products:latest
         resources:
           limits:
@@ -28,6 +28,7 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 8082
+          name: http
         imagePullPolicy: IfNotPresent
         env:
         - name: DATABASE_USER

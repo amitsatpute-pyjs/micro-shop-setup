@@ -12,5 +12,3 @@ spec:
   ports:
   - port: 80
     targetPort: 8082
-    protocol: TCP
-

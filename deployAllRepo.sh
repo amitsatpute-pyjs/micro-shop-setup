@@ -11,8 +11,7 @@ function build_image() {
     k3d image import --cluster micro-shop-local $1:latest  
 }
 prefix="micro-shop"
-#declare -a gitrepos=("orders" "api" "products")
-declare -a gitrepos=("api" "products")
+declare -a gitrepos=("orders" "api" "products")
 
 for repo in ${gitrepos[@]}; do
     echo    
@@ -26,10 +25,10 @@ for repo in ${gitrepos[@]}; do
             # git pull               
             git checkout main
             git pull
-            build_image ${prefix}-${repo}
+            build_image ${repo}
         else
             echo "Main branch current or ahead of origin/main."
-            build_image ${prefix}-${repo}
+            build_image ${repo}
         fi
   else
     echo "Cloning repo."
@@ -37,7 +36,7 @@ for repo in ${gitrepos[@]}; do
     # git checkout main    
     cd ${prefix}-${repo}
     git checkout dev
-    build_image ${prefix}-${repo}`
+    build_image ${repo}
   fi
 
 done
