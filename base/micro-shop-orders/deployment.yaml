@@ -21,7 +21,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: orders
-        image: micro-shop-orders:latest 
+        image: orders:latest
         resources:
           limits:
             memory: "128Mi"

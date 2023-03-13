@@ -21,7 +21,7 @@ spec:
       restartPolicy: Always
       containers:
       - name: prodcuts
-        image: micro-shop-products:latest 
+        image: products:latest
         resources:
           limits:
             memory: "128Mi"

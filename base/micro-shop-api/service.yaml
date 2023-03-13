@@ -10,7 +10,6 @@ spec:
     name: api-pod
     app: micro-shop
   ports:
-  - port: 4000
+  - port: 80
     targetPort: 4000
-    protocol: TCP
 

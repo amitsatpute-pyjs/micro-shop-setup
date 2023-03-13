@@ -6,6 +6,8 @@ metadata:
     name: services-configmap
     app: micro-shop
 data:
-  order_service_url: order-service
-  product_service_url: product-service
+  order_service_url: http://order-service.default.svc.cluster.local:80
+  #order_service_url: http://order-service ----->> need to check if this also works for default ns
+  #product_service_url: http://product-service ----->> need to check if this also works  for default ns
+  product_service_url: http://product-service.default.svc.cluster.local:80
   

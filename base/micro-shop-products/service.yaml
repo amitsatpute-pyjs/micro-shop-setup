@@ -10,7 +10,7 @@ spec:
     name: products-pod
     app: micro-shop
   ports:
-  - port: 8082
+  - port: 80
     targetPort: 8082
     protocol: TCP
 
