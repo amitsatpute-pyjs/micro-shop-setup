@@ -7,7 +7,7 @@ source $CONFIG_FILE
 prefix="micro-shop"
 
 function build_image() {  
-    docker build -t $1:latest -f docker/$1.Dockerfile .
+    docker build -t $1:latest -f docker/$2.Dockerfile .
     k3d image import --cluster micro-shop-local $1:latest  
 }
 prefix="micro-shop"
@@ -25,10 +25,10 @@ for repo in ${gitrepos[@]}; do
             # git pull               
             git checkout main
             git pull
-            build_image ${repo}
+            build_image ${repo} ${prefix}-${repo}
         else
             echo "Main branch current or ahead of origin/main."
-            build_image ${repo}
+            build_image ${repo} ${prefix}-${repo}
         fi
   else
     echo "Cloning repo."
@@ -36,7 +36,7 @@ for repo in ${gitrepos[@]}; do
     # git checkout main    
     cd ${prefix}-${repo}
     git checkout dev
-    build_image ${repo}
+    build_image ${repo} ${prefix}-${repo}
   fi
 
 done
