@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-service
+  labels:
+    name: ui-service
+    app: micro-shop
+spec:
+  selector:
+    name: ui-pod
+    app: micro-shop
+  ports:
+  - port: 80
+    targetPort: 3000
+

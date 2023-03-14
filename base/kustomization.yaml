@@ -5,3 +5,4 @@ resources:
   - ./micro-shop-orders
   - ./micro-shop-products
   - ./mysql
+  - ./micro-shop-ui

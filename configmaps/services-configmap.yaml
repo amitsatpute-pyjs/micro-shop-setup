@@ -8,3 +8,4 @@ metadata:
 data:
   order_service_url: http://order-service.default.svc.cluster.local:80
   product_service_url: http://product-service.default.svc.cluster.local:80
+  api_service_url: http://api-service.default.svc.cluster.local:80
