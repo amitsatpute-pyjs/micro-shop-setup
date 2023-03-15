@@ -6,3 +6,4 @@ resources:
   - ./micro-shop-products
   - ./mysql
   - ./micro-shop-ui
+  - ./ingress
