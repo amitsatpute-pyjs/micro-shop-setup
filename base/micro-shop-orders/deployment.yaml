@@ -55,5 +55,7 @@ spec:
             configMapKeyRef:
               name: mysql-configmap
               key: orders_database_name
+        - name: PORT
+          value: "8081"
 
 

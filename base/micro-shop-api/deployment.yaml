@@ -40,6 +40,8 @@ spec:
             configMapKeyRef:
               name: services-configmap
               key: product_service_url
+        - name: PORT
+          value: "4000"
               
 
 

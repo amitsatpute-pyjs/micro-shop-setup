@@ -56,5 +56,7 @@ spec:
             configMapKeyRef:
               name: mysql-configmap
               key: products_database_name
+        - name: PORT
+          value: "8082"
 
 
