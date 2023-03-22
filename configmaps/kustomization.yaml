@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - database-configmap.yaml
   - services-configmap.yaml
+  - mysql-user-configmap.yaml

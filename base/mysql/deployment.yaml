@@ -20,25 +20,25 @@ spec:
     spec:
       restartPolicy: Always
       containers:
-      - name: mysql
-        image: mysql:8.0       
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 3306
-        env:
-          - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mysql-secret
-                key: db-root-password
-        volumeMounts:
-          - name: mysql-config-volume ## specify volume name
-            mountPath: /etc/mysql/conf.d/default_auth.cnf ## path to mount file
-            subPath: default_auth ## name of config
+        - name: mysql
+          image: mysql:8.0
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: db-root-password
+
+          volumeMounts:
+          - name: mysql-inituser
+            mountPath: /docker-entrypoint-initdb.d
       volumes:
-      - name: mysql-config-volume ## volume name
+      - name: mysql-inituser
         configMap:
-          name: mysql-configmap ## name of Config
+          name: mysql-user-configmap
