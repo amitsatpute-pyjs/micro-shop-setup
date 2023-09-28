@@ -7,6 +7,11 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
     nginx.ingress.kubernetes.io/cors-allow-origin: "*"  
 spec:
+  defaultBackend:
+    service:
+      name: ui-service
+      port:
+        number: 80
   rules:
     - host: shopapp.com
       http:
