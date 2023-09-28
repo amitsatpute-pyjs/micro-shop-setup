@@ -21,11 +21,11 @@ spec:
       restartPolicy: Always
       containers:
       - name: products
-        image: products:latest
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: tejas9018/micro-shop-products:latest
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 8082
           name: http
@@ -34,27 +34,27 @@ spec:
         - name: DATABASE_USER
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: postgres-secret
               key: db-root-username
         - name: DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: postgres-secret
               key: db-root-password
         - name: DATABASE_HOST
           valueFrom:
             configMapKeyRef:
-              name: mysql-configmap
+              name: postgres-configmap
               key: database_url
         - name: DATABASE_PORT
           valueFrom:
             configMapKeyRef:
-              name: mysql-configmap
+              name: postgres-configmap
               key: database_port
         - name: DATABASE_NAME
           valueFrom:
             configMapKeyRef:
-              name: mysql-configmap
+              name: postgres-configmap
               key: products_database_name
         - name: PORT
           value: "8082"

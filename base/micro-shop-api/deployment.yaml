@@ -21,11 +21,11 @@ spec:
       restartPolicy: Always
       containers:
       - name: apis
-        image: api:latest
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: tejas9018/micro-shop-api:latest
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 4000
         imagePullPolicy: IfNotPresent
@@ -42,6 +42,6 @@ spec:
               key: product_service_url
         - name: PORT
           value: "4000"
-              
+
 
 
