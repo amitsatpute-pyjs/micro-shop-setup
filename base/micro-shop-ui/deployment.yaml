@@ -21,15 +21,15 @@ spec:
       restartPolicy: Always
       containers:
       - name: ui
-        image: ui:latest
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: tejas9018/micro-shop-ui:latest
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
         ports:
         - containerPort: 3000
         imagePullPolicy: IfNotPresent
-        env:        
+        env:
         - name: REACT_APP_API_GATEWAY
           valueFrom:
             configMapKeyRef:

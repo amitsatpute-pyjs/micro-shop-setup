@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-configmap
+  labels:
+    name: postgres-configmap
+    app: micro-shop
+data:
+  database_url: postgres-db-service
+  database_port: "5432"
+  orders_database_name: micro_shop_orders
+  products_database_name: micro_shop_products
+  POSTGRES_PASSWORD: password
+
