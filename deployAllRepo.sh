@@ -7,7 +7,7 @@ source $CONFIG_FILE
 prefix="micro-shop"
 
 function build_image() {  
-    docker build -t $1:latest -f docker/$2.Dockerfile .
+    docker build --no-cache -t $1:latest -f docker/$2.Dockerfile .
     k3d image import --cluster micro-shop-local $1:latest  
 }
 prefix="micro-shop"
@@ -17,7 +17,7 @@ for repo in ${gitrepos[@]}; do
     echo    
     cd $MICRO_SERVICE_ROOT    
     echo "${repo}.........................................................."
-    if [ -d ${prefix}-${repo} ]; then
+    if [ -d ${prefix}-${repo} ]; then        
         cd ${prefix}-${repo}
         if [ "$(git fetch && git rev-list main...origin/main --count)" -gt "0" ]; then
             echo "Main branch behind origin/main."
@@ -28,6 +28,7 @@ for repo in ${gitrepos[@]}; do
             build_image ${repo} ${prefix}-${repo}
         else
             echo "Main branch current or ahead of origin/main."
+            git checkout main
             build_image ${repo} ${prefix}-${repo}
         fi
   else
@@ -35,7 +36,7 @@ for repo in ${gitrepos[@]}; do
     git clone git@github.com:amitsatpute-pyjs/${prefix}-${repo}.git
     # git checkout main    
     cd ${prefix}-${repo}
-    git checkout dev
+    git checkout main
     build_image ${repo} ${prefix}-${repo}
   fi
 

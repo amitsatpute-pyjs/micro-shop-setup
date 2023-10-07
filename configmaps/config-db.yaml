@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: select-db-configmap
+  labels:
+    name: select-db-configmap
+    app: micro-shop
+data:
+  use_mysql: "0"

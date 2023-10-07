@@ -31,12 +31,12 @@ spec:
           name: http
         imagePullPolicy: IfNotPresent
         env:
-        - name: DATABASE_USER
+        - name: DATABASE_USER_PG
           valueFrom:
             secretKeyRef:
               name: postgres-secret
               key: db-root-username
-        - name: DATABASE_PASSWORD
+        - name: DATABASE_PASSWORD_PG
           valueFrom:
             secretKeyRef:
               name: postgres-secret
@@ -46,7 +46,7 @@ spec:
             configMapKeyRef:
               name: postgres-configmap
               key: database_url
-        - name: DATABASE_PORT
+        - name: DATABASE_PORT_PG
           valueFrom:
             configMapKeyRef:
               name: postgres-configmap
@@ -56,6 +56,11 @@ spec:
             configMapKeyRef:
               name: postgres-configmap
               key: products_database_name
+        - name: USE_MYSQL
+          valueFrom:
+            configMapKeyRef:
+              name: select-db-configmap
+              key: use_mysql
         - name: PORT
           value: "8082"
 
